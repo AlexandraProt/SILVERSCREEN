@@ -2,7 +2,7 @@ with costs as (
   select
     i.movie_id,
     i.month,
-    upper(i.location_id) as location,         -- 🔥 ВАЖНО: привели к нужному формату
+    upper(i.location_id) as location,
     m.movie_title,
     m.studio,
     m.genre,
@@ -12,20 +12,19 @@ with costs as (
     on i.movie_id = m.movie_id
   group by 1, 2, 3, 4, 5, 6
 ),
-
 revenue as (
   select
     movie_id,
-    to_char(date, 'YYYY-MM') as month,
+    month,
     upper(location) as location,
     sum(revenue) as revenue,
     sum(ticket_amount) as tickets_sold
   from (
-    select * from {{ ref('stg_nj_001') }}
+    select movie_id, month, location, revenue, ticket_amount from {{ ref('stg_nj_001') }}
     union all
-    select * from {{ ref('stg_nj_002') }}
+    select movie_id, month, location, revenue, ticket_amount from {{ ref('stg_nj_002') }}
     union all
-    select * from {{ ref('stg_nj_003') }}
+    select movie_id, month, location, revenue, ticket_amount from {{ ref('stg_nj_003') }}
   )
   group by 1, 2, 3
 )
