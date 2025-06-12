@@ -1,13 +1,8 @@
-{{
- config(
- materialized='view'
- )
-}}
 select
- movie_id,
-EXTRACT (MONTH from timestamp) AS month,
-'NJ-001' AS location,
-SUM(ticket_amount) AS total_tickets,
-SUM(transaction_total) AS revenue
+  movie_id,
+  upper('NJ_001') as location,
+  extract(month from timestamp) as month,
+  transaction_total as revenue,
+  ticket_amount as ticket_amount
 from {{ source('silverscreen', 'nj_001') }}
-group by 1, 2
+

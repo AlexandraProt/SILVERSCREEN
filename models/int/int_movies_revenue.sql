@@ -2,7 +2,7 @@ WITH transactions AS (
   SELECT
     movie_id,
     location,
-    date,
+    month,
     revenue,
     ticket_amount
   FROM {{ ref('stg_nj_001') }}
@@ -12,7 +12,7 @@ WITH transactions AS (
   SELECT
     movie_id,
     location,
-    date,
+    month,
     revenue,
     ticket_amount
   FROM {{ ref('stg_nj_002') }}
@@ -22,7 +22,7 @@ WITH transactions AS (
   SELECT
     movie_id,
     location,
-    date,
+    month,
     revenue,
     ticket_amount
   FROM {{ ref('stg_nj_003') }}
@@ -31,9 +31,8 @@ WITH transactions AS (
 SELECT
   movie_id,
   location,
-  EXTRACT(YEAR FROM date) AS year,
-  EXTRACT(MONTH FROM date) AS month,
+  month,
   SUM(revenue) AS revenue,
   SUM(ticket_amount) AS tickets_sold
 FROM transactions
-GROUP BY 1, 2, 3, 4
+GROUP BY 1, 2, 3
