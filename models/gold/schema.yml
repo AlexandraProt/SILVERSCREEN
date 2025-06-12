@@ -24,7 +24,7 @@ models:
           - accepted_values:
               values: ["NJ_001", "NJ_002", "NJ_003"]
 
-      - name: transaction_month
+      - name: month
         description: "Month of transaction"
         tests:
           - not_null

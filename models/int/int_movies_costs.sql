@@ -1,6 +1,6 @@
 select
   month,
-  location_id,
+  location,
   m.movie_id,
   movie_title,
   m.studio,
