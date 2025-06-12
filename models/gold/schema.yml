@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: mart_movies
+    description: "Final movie-level mart: combines ticket sales, rental costs, and metadata per month/location."
+    columns:
+      - name: movie_id
+        description: "Unique identifier for the movie"
+        tests:
+          - not_null
+
+      - name: movie_title
+        description: "Title of the movie"
+
+      - name: studio
+        description: "Producing studio"
+
+      - name: genre
+        description: "Movie genre"
+
+      - name: location
+        description: "Theater location"
+        tests:
+          - accepted_values:
+              values: ["NJ_001", "NJ_002", "NJ_003"]
+
+      - name: transaction_month
+        description: "Month of transaction"
+        tests:
+          - not_null
+
+      - name: revenue
+        description: "Total revenue from ticket sales"
+
+      - name: tickets_sold
+        description: "Number of tickets sold"
+
+      - name: rental_costs
+        description: "Total rental costs for showing the movie"

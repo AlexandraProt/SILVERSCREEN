@@ -1,0 +1,53 @@
+version: 2
+
+sources:
+  - name: silverscreen
+    database: SILVERSCREEN
+    schema: BRONZE
+    tables:
+      - name: movie_catalogue
+        description: "Catalogue of all movies with their details."
+        columns:
+          - name: movie_id
+            tests:
+              - unique
+              - not_null
+
+      - name: invoices
+        description: "Invoices with rental costs per movie per location/month."
+        columns:
+          - name: movie_id
+            tests:
+              - not_null
+          - name: location_id
+          - name: month
+          - name: total_invoice_sum
+
+      - name: nj_001
+        description: "Transactional ticket sales data for location NJ_001."
+        columns:
+          - name: transaction_id
+            tests:
+              - unique
+              - not_null
+          - name: movie_id
+
+      - name: nj_002
+        description: "Daily aggregated sales data for location NJ_002."
+        columns:
+          - name: date
+            tests:
+              - not_null
+          - name: movie_id
+            tests:
+              - not_null
+
+      - name: nj_003
+        description: "Purchase-level data from location NJ_003."
+        columns:
+          - name: date
+            tests:
+              - not_null
+          - name: movie_id
+            tests:
+              - not_null
