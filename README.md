@@ -87,4 +87,5 @@ Final unified reporting layer:
 - End-to-end pipeline design and documentation
 
 ---
+📊 [Click here to view the final presentation](https://docs.google.com/presentation/d/your_presentation_id_here)
 
